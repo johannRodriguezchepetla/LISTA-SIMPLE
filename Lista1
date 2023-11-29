@@ -1,0 +1,42 @@
+package com.example.listasimple2;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.listasimple2.R;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText editText;
+    private Button addButton;
+    private TextView textView;
+    private StringBuilder dataBuilder;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        editText = findViewById(R.id.TEXT1);
+        addButton = findViewById(R.id.BOTON1);
+        textView = findViewById(R.id.LISTAO);
+        dataBuilder = new StringBuilder();
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String data = editText.getText().toString();
+                if (!data.isEmpty()) {
+                    dataBuilder.append(data).append("\n");
+                    textView.setText(dataBuilder.toString());
+                    editText.setText("");
+                }
+            }
+        });
+    }
+}
